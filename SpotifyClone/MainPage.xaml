@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpotifyClone.MainPage"
+             BackgroundColor="Black">
+
+    <Grid RowDefinitions="*, Auto, Auto">
+        <!-- Main Content Area -->  
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="20" Padding="15">
+                <!-- Recently Played Section -->
+                <Label Text="Recently Played" 
+                       TextColor="White" 
+                       FontSize="24" 
+                       FontAttributes="Bold"/>
+
+                <CollectionView x:Name="RecentlyPlayedList"
+                              HeightRequest="200"
+                              SelectionMode="Single"
+                              SelectionChanged="OnSongSelected">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" 
+                                         ItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid WidthRequest="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="150"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Image Source="{Binding AlbumArt}"
+                                       Aspect="AspectFill"/>
+                                <Label Text="{Binding Title}"
+                                       Grid.Row="1"
+                                       TextColor="White"
+                                       FontSize="14"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Popular Playlists -->
+                <Label Text="Popular Playlists" 
+                       TextColor="White" 
+                       FontSize="24" 
+                       FontAttributes="Bold"/>
+
+                <CollectionView x:Name="PopularPlaylists"
+                              SelectionMode="Single"
+                              SelectionChanged="OnPlaylistSelected">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="0,10" ColumnDefinitions="Auto,*,Auto">
+                                <Image Source="{Binding PlaylistArt}"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       Aspect="AspectFill"/>
+
+                                <VerticalStackLayout Grid.Column="1" 
+                                                   Padding="15,0">
+                                    <Label Text="{Binding Name}"
+                                           TextColor="White"
+                                           FontSize="16"/>
+                                    <Label Text="{Binding Description}"
+                                           TextColor="Gray"
+                                           FontSize="14"/>
+                                </VerticalStackLayout>
+
+                                <Button Grid.Column="2"
+                                        Text="..."
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Now Playing Bar -->
+        <Grid Grid.Row="1" 
+              BackgroundColor="#282828"
+              Padding="15,10"
+              ColumnDefinitions="Auto,*,Auto">
+
+            <Image Source="{Binding CurrentTrack.AlbumArt}"
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+
+            <VerticalStackLayout Grid.Column="1" 
+                               Padding="15,0">
+                <Label Text="{Binding CurrentTrack.Title}"
+                       TextColor="White"
+                       FontSize="14"/>
+                <Label Text="{Binding CurrentTrack.Artist}"
+                       TextColor="Gray"
+                       FontSize="12"/>
+            </VerticalStackLayout>
+
+            <Button Grid.Column="2"
+                    Text="▶"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Clicked="OnPlayPauseClicked"/>
+        </Grid>
+
+        <!-- Navigation Bar -->
+        <Grid Grid.Row="2" 
+              BackgroundColor="#282828"
+              ColumnDefinitions="*,*,*"
+              Padding="0,10">
+
+            <Button Text="Home"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Grid.Column="0"/>
+
+            <Button Text="Search"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Grid.Column="1"/>
+
+            <Button Text="Library"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Grid.Column="2"/>
+        </Grid>
+    </Grid>
+</ContentPage>
