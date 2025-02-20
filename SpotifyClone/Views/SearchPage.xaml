@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpotifyClone.Views.SearchPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto" 
+          RowSpacing="0">
+
+        <!-- Search Header Section -->
+        <VerticalStackLayout Grid.Row="0" 
+                            Spacing="15"
+                            Padding="20,10">
+            <Label Text="Search"
+                   Style="{StaticResource TitleText}"/>
+
+            <Border StrokeShape="RoundRectangle 8"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                    Margin="0,0,0,10">
+                <Grid ColumnDefinitions="Auto,*" 
+                      Padding="15,5" 
+                      ColumnSpacing="10">
+                    <Image Source="{AppThemeBinding Light='search_black.png', Dark='search_white.png'}"
+                           HeightRequest="20"
+                           WidthRequest="20"/>
+                    <Entry Grid.Column="1"
+                           Placeholder="What do you want to listen to?"
+                           Text="{Binding SearchText}"
+                           Style="{StaticResource SearchEntry}"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+
+        <!-- Browse Categories -->
+        <ScrollView Grid.Row="1">
+            <Grid RowDefinitions="Auto,*"
+                  Padding="20,0,20,20">
+
+                <Label Text="Browse All"
+                       Style="{StaticResource SubtitleText}"
+                       Margin="0,0,0,15"/>
+
+                <CollectionView Grid.Row="1"
+                              ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                       Span="2"
+                                       VerticalItemSpacing="15"
+                                       HorizontalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeShape="RoundRectangle 8"
+                                    HeightRequest="100"
+                                    BackgroundColor="{Binding Color}">
+                                <Grid Padding="15">
+                                    <Label Text="{Binding Name}"
+                                           TextColor="White"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="Start"/>
+                                    <Image Source="{Binding ImageSource}"
+                                           HeightRequest="60"
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           VerticalOptions="End"
+                                           HorizontalOptions="End"
+                                           Rotation="-25"/>
+                                </Grid>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategorySelectedCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
+
+        <!-- Navigation Bar -->
+        <Grid Grid.Row="2" 
+              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+              HeightRequest="80"
+              ColumnDefinitions="*,*,*"
+              Padding="0,5,0,20"
+              ColumnSpacing="0">
+
+            <!-- Home -->
+            <VerticalStackLayout Grid.Column="0"
+                               HorizontalOptions="Center"
+                               Spacing="4">
+                <Image Source="{AppThemeBinding Light='home_black.png', Dark='home_white.png'}"
+                       HeightRequest="24"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateHomeCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Home"
+                       Style="{StaticResource NavBarText}"/>
+            </VerticalStackLayout>
+
+            <!-- Search -->
+            <VerticalStackLayout Grid.Column="1"
+                               HorizontalOptions="Center"
+                               Spacing="4">
+                <Image Source="{AppThemeBinding Light='search_black_selected.png', Dark='search_white_selected.png'}"
+                       HeightRequest="24"
+                       Aspect="AspectFit"/>
+                <Label Text="Search"
+                       Style="{StaticResource NavBarTextSelected}"/>
+            </VerticalStackLayout>
+
+            <!-- Library -->
+            <VerticalStackLayout Grid.Column="2"
+                               HorizontalOptions="Center"
+                               Spacing="4">
+                <Image Source="{AppThemeBinding Light='library_black.png', Dark='library_white.png'}"
+                       HeightRequest="24"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateLibraryCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Library"
+                       Style="{StaticResource NavBarText}"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Mini Player -->
+        <Border Grid.Row="2"
+                Margin="10,0,10,90"
+                StrokeShape="RoundRectangle 8"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
+                Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray800}}"
+                Padding="12">
+            <Grid ColumnDefinitions="Auto,*,Auto" 
+                  ColumnSpacing="12">
+                <Image Grid.Column="0"
+                       Source="album_placeholder.png"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       Aspect="AspectFill"/>
+                <VerticalStackLayout Grid.Column="1" 
+                                   Spacing="2"
+                                   VerticalOptions="Center">
+                    <Label Text="Current Track"
+                           Style="{StaticResource MiniPlayerTitle}"/>
+                    <Label Text="Artist"
+                           Style="{StaticResource MiniPlayerSubtitle}"/>
+                </VerticalStackLayout>
+                <HorizontalStackLayout Grid.Column="2"
+                                     Spacing="20"
+                                     HorizontalOptions="End">
+                    <ImageButton Source="{AppThemeBinding Light='play_black.png', Dark='play_white.png'}"
+                                HeightRequest="32"
+                                WidthRequest="32"
+                                Command="{Binding PlayPauseCommand}"/>
+                </HorizontalStackLayout>
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenNowPlayingCommand}"/>
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentPage>

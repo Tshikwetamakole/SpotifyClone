@@ -1,0 +1,59 @@
+L) Profilexaml
+b oC Profilexamlcs
+13) SettingsPagexaml
+b oC SettingsPagexaml.cs
+1) signinxaml
+b ac signinxamlcs
+1) signupaxami
+boc signupxamlcs
+13) ValidationRequestsPagexam!
+b .C ValidationRequestsPagexaml.cs
+1) WantedPersonsaxaml
+b C2 WantedPersons:xami.cs
+BH Platforms
+Bl Resources
+Ti View
+Bl ViewModel
+= AdminDashBoardViewModel.cs
+= AlertsViewModel.cs
+ AnnouncementsViewModelcs
+= BaseliewModel.cs
+
+GeneralDiscussionsViewModel.cs
+IncidentReportVienModelcs
+LandingPageViewModel.cs
+MainViewModel.cs
+ManagelsersViewModel.cs
+PeopleOfinterestDetail:ViewModel.cs
+PeopleOfinterestViewModelcs
+SigninViewModel.cs
+= SignupViewModel.cs
+= ValidationRequestsViewModel.cs
+ WantedPersonViewModel.cs
+1) Appaaml
+
+= Appxamlcs
+13) AppShellxami
+
+* AppShell:xami.cs
+I) MainPagesxam!
+
+* MainPage xamlcs
+
+= MauiProgram.cs
+
+»
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3

@@ -1,0 +1,53 @@
+4 5 [2] CommunityConnect
+b 85 Dependencies
+b 588 Properties
+4 © [ model
+= AlertsModelcs
+5 Menultem.cs
++ ObservableObject.cs
+= Person.cs
+= PersonModel.cs
+# ValidationRequest.cs
++ WantedPersonsModel.cs
+4 580 Pages
+* NewFolder
+I7) AdminDashBoardPage:xami
+b C+ AdminDashBoardPagexaml.cs
+17) AlertsPage:xami
+b 5 CH Alertspagexaml.cs
+17) Announcements cami
+b 4 C# Announcements:xaml.cs
+I) ChatBotPage:xami
+b 4 Ct ChatBotPagexaml.cs
+I) EmergencyContactpagexaml
+b 4 C+ EmergencyContactPagexami.cs
+17) forgotPasswordaxami
+b 4 C¥ forgotPasswordxaml.cs
+17) ForumPage:xami
+b 4 C¥ Forumpagexaml.cs
+17) GeneralDiscussions xami
+b 4 C# GeneralDiscussions.xaml.cs
+17) IncidentFeedaxami
+b 4 C¥ IncidentFesdxaml.cs
+
+I) IncidentReportPage.xaml
+
+b 2c IncidentReportPagexaml.cs
+13) LandingPagexxam!
+
+b 2c LandingPage:xami.cs
+13) ManageUsersPagexam!
+
+b .C# ManagelsersPage xami.cs
+13) MissingPersons:xami
+
+b 4 C MissingPersons:xami.cs
+13) MissingView.xam!
+
+b Ci MissingViewxami.cs
+13) PeopleOfinterestxami
+
+b .C PeopleOfinterestxaml.cs
+13) PeopleOfinterestDetaisxam!
+
+b 7c PeopleOfinterestDetailsxaml.cs
